@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benny Jane Of Blog</title>
+    <link rel="icon" href="../../static/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/Lux.min.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/style.css" type="text/css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">PyGoRun</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">首页<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">专题</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">可视化</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Links</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">others</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">WORK</a>
+                    <a class="dropdown-item" href="#">TODO</a>
+                    <a class="dropdown-item" href="#">PICTURES</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">...</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">新增</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">文章</a>
+                    <a class="dropdown-item" href="#">分类</a>
+                    <a class="dropdown-item" href="#">Link</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">编辑</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">文章</a>
+                    <a class="dropdown-item" href="#">分类</a>
+                    <a class="dropdown-item" href="#">评论</a>
+                    <a class="dropdown-item" href="#">Link</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+    </div>
+</nav>
+<div class="container col-md-6">
+    <!-- 登录页面-->
+    <div id="login-page" class="align-content-md-center">
+        <form>
+            <fieldset>
+                <legend>新增分类</legend>
+                <div class="form-group">
+                    <label for="name">名称</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                           placeholder="请输入分类名称">
+                </div>
+                <fieldset class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <!-- input 添加  checked="" 类属性，修改默认是否选中-->
+                        <input type="checkbox" class="custom-control-input" id="isCollection">
+                        <label class="custom-control-label" for="isCollection">是否是专题文章</label>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="isRecommend">
+                        <label class="custom-control-label" for="isRecommend">是否设置为推荐文章</label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <footer style="position: fixed; bottom: 0;padding: 10px 0" class="col-md-6">
+        <p class="float-left">
+            <small> &copy; 2020 <a href="http://greyli.com" title="Written by Grey Li">Benny Jane</a> -
+                <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -
+                <a href="http://helloflask.com" title="A HelloFlask project">My Blog</a>
+            </small>
+        </p>
+        <p class="float-right">
+            <small>
+                <a href="./login.html">Login</a>
+            </small>
+        </p>
+    </footer>
+</div>
+
+<script type="text/javascript" src="../../static/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="../../static/js/popper.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/js/script.js"></script>
+<script type="text/javascript" src="../../static/js/moment-with-locales.min.js"></script>
+</body>
+</html>
