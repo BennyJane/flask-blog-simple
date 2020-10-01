@@ -16,6 +16,7 @@ if WIN:
 else:
     prefix = 'sqlite:////'
 
+
 class BaseConfig(object):
     PROJECT_NAME = 'blogDog'
 
@@ -27,12 +28,8 @@ class BaseConfig(object):
     SQLALCHEMY_RECORD_QUERIES = True
 
 
-
-
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
-
-
 
 
 class TestingConfig(BaseConfig):
@@ -41,7 +38,6 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data.db')
-
 
 
 config = {
