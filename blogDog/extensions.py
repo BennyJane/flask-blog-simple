@@ -5,16 +5,21 @@
 # @File : __init__.py
 # @Project : flask-blog-v1
 from flask_bootstrap import Bootstrap
+from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import CSRFProtect
 
 db = SQLAlchemy()
 migrate = Migrate()
 moment = Moment()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
+# 需要添加，才能在前端页面使用
+ckeditor = CKEditor()
+csrf = CSRFProtect()
 
 
 @login_manager.user_loader

@@ -1,0 +1,16 @@
+{% extends 'admin/_admin_base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block title %}New Post{% endblock %}
+
+
+{% block adminContent %}
+    <legend>添加文章</legend>
+    {{ render_form(form) }}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}"></script>
+    {{ ckeditor.config(name='body') }}
+{% endblock %}

@@ -12,10 +12,12 @@
                     {% include "blog/_recommend.html" %}
                 {% endblock %}
 
-                <!-- 文章缩写框 -->
-                {% include "blog/_post.html" %}
-                <!-- 页码 -->
-                {% include "_page.html" %}
+                {% block rightBody %}
+                    <!-- 文章缩写框 -->
+                    {% include "blog/_post.html" %}
+                    <!-- 页码 -->
+                    {% include "_page.html" %}
+                {% endblock %}
             </div>
             <!-- 右侧内容框 -->
             {% include "blog/_sidebar.html" %}

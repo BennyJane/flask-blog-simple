@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+
+{% block mainBody %}
+    <div class="container col-md-8">
+        <div class="align-content-md-center">
+            <!-- 错误消息提示 -->
+            {% include '_errorInfo.html' %}
+
+            {% block adminContent %}
+            {% endblock %}
+            <!-- 页码 -->
+            {% include "_page.html" %}
+        </div>
+    </div>
+    <!-- 返回顶部 -->
+    <div style="position: fixed; right: 30px; bottom: 10vh">
+        <span class="float-lg-right"><a href="#top">Back to top</a></span>
+    </div>
+    <!-- 页脚 -->
+    {% block adminFooter %}
+        <div class="container col-md-8">
+            {% include 'blog/_footer.html' %}
+        </div>
+    {% endblock %}
+
+{% endblock mainBody %}

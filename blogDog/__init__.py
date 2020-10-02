@@ -12,10 +12,11 @@ from flask import Flask
 from flask_login import current_user
 
 from blogDog.cli import command, command1, command2, command3
-from blogDog.extensions import db, migrate, moment, bootstrap, login_manager
+from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf
 from blogDog.models import Admin, Post, Category, Comment, Link
 from blogDog.settings import config
 from blogDog.views import indexView
+from blogDog.web.admin import admin_bp
 from blogDog.web.auth import auth_bp
 from blogDog.web.blog import blog_bp
 
@@ -44,6 +45,8 @@ def register_extensions(app):
     moment.init_app(app)
     bootstrap.init_app(app)
     login_manager.init_app(app)
+    ckeditor.init_app(app)
+    csrf.init_app(app)
 
 
 def register_commands(app):
@@ -57,6 +60,7 @@ def register_commands(app):
 def register_blueprint(app):
     app.register_blueprint(blog_bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(admin_bp, url_prefix='/admin')
 
 
 def register_shell_context(app):

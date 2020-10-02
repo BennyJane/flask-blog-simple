@@ -1,0 +1,46 @@
+{% extends 'admin/_admin_base.html' %}
+
+{% block adminContent %}
+    <legend>分类列表</legend>
+    <table class="table table-hover">
+        <thead class="table-cell">
+        <tr>
+            <th scope="col">序号</th>
+            <th scope="col">名称</th>
+            <th scope="col">链接</th>
+            <th scope="col">简介</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody class="table-cell">
+        {% if links %}
+            {% for link in links %}
+                <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ link.name }}</td>
+                    {% if link.url %}
+                        <td>{{ link.url }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>{{ link.message }}</td>
+                    <td class="table-deal">
+                        <div class="justify-content-between">
+                            <a type="button" class="btn btn-primary btn-sm"
+                               href="{{ url_for('admin.edit_link', link_id=link.id) }}">编辑</a>
+                            <!-- 利用form 提交post请求 -->
+                            <form class="inline" method="post"
+                                  action="{{ url_for('admin.delete_link', link_id=link.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-primary btn-sm"
+                                        onclick="return confirm('是否确认删除？')">删除
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

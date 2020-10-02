@@ -1,37 +1,40 @@
 <div>
     <ul class="pagination">
-        {% if page_params.total !=0 %}
-            {% if page_params.is_prev ==1 %}
-                <li class="page-item">
-                    <a class="page-link" href="{{ page_params.url }}&page=1">&laquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">&laquo;</a>
-                </li>
-            {% endif %}
-
-            {% for idx in page_params.range %}
-                {% if idx == page_params.current %}
-                    <li class="page-item active">
-                        <a class="page-link" href="javascript:void(0);">{{ idx }}</a>
+        {% if page_params %}
+            {% if page_params.total !=0 %}
+                {% if page_params.is_prev ==1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ page_params.url }}&page=1">&laquo;</a>
                     </li>
                 {% else %}
-                    <li class="page-item">
-                        <a class="page-link" href="{{ page_params.url }}&page={{ idx }}">{{ idx }}</a>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo;</a>
                     </li>
                 {% endif %}
-            {% endfor %}
 
-            {% if page_params.is_next ==1 %}
-                <li class="page-item">
-                    <a class="page-link" href="{{ page_params.url }}&page={{ page_params.total_pages }}">&raquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">&raquo;</a>
-                </li>
+                {% for idx in page_params.range %}
+                    {% if idx == page_params.current %}
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0);">{{ idx }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ page_params.url }}&page={{ idx }}">{{ idx }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_params.is_next ==1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ page_params.url }}&page={{ page_params.total_pages }}">&raquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&raquo;</a>
+                    </li>
+                {% endif %}
             {% endif %}
+
         {% else %}
             <!-- 数量为0 -->
         {% endif %}

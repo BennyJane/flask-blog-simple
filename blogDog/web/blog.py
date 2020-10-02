@@ -92,5 +92,4 @@ def show_post(post_id):
     # 筛选当前页面的数据
     offset = (page - 1) * per_page
     comments = query.offset(offset).limit(per_page).all()
-
     return render_template('blog/post.html', page_params=page_params, comments=comments, post=post)

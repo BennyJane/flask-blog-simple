@@ -1,0 +1,10 @@
+{% extends 'admin/_admin_base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block title %}New Link{% endblock %}
+
+
+{% block adminContent %}
+    <legend>添加链接</legend>
+    {{ render_form(form) }}
+{% endblock %}
