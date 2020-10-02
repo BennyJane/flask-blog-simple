@@ -1,0 +1,17 @@
+{% if recommends %}
+    <!-- 推荐文章，横向轮播图 -->
+    <div class="alert alert-dismissible alert-warning" style="width: 100%; padding-right: 1.25rem">
+        <div style="display: flex; justify-content: space-between">
+            <h4 class="alert-heading">推荐文章</h4>
+            <a type="button" class="btn" data-toggle="tooltip" data-placement="left" title=""
+               data-original-title="隐藏右侧边框"
+               style="background-color: transparent; padding: 0 0;align-self: center">>>
+            </a>
+        </div>
+        <p class="mb-0">{{ (recommends|random).body|striptags|truncate }}<a
+                href="#"
+                class="alert-link">点击查看文章详情</a>.
+        </p>
+    </div>
+
+{% endif %}

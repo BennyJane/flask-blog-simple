@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block title %}Login{% endblock %}
+
+{% block mainBody %}
+    <div class="container col-md-4">
+        <!-- 登录页面-->
+        <div id="login-page" class="align-content-md-center">
+            <legend>登录</legend>
+            {{ render_form(form, extra_classes='') }}
+        </div>
+        {% include 'auth/_footer.html' %}
+    </div>
+{% endblock %}

@@ -27,6 +27,10 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_RECORD_QUERIES = True
 
+    # 分页设置
+    PER_PAGE = 10
+    HALF_PAGE_DISPLAY = 2  # 当前页码每侧展示的页码个数
+
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')

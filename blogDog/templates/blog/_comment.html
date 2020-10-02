@@ -1,0 +1,41 @@
+<!-- 文章缩写框 -->
+<div id="comments" style="margin-bottom: 1rem">
+    {% if comments %}
+        <!-- 评论数量 -->
+        <h4>{{ comments|length }}条评论 <a href="#">
+            <small class="text-secondary">最新评论</small>
+        </a></h4>
+        <!-- 评论 -->
+        <div class="card">
+            <ul class="list-group list-group-flush ">
+                {% for comment in comments %}
+                    <li class="list-group-item">
+                        <!-- 用户名称+评论时间 -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            {{ comment.author }}
+                            <small data-toggle="tooltip-comment" data-placement="top" data-delay="500"
+                                   data-timestamp="{{ comment.timestamp.strftime('%Y-%m-%dT%H:%M:%SZ') }}">
+                                {{ moment(comment.timestamp).fromNow() }}
+                            </small>
+                        </div>
+                        {% if comment.replied %}
+                            <!-- 判断评论是否是回复别人的 -->
+                            <p class="alert alert-dismissible alert-dark reply-body">{{ comment.replied.author }}:
+                                <br>{{ comment.replied.body }}！！
+                            </p>
+                        {% endif %}
+                        <p class="lead" style="padding: 14px 0; margin-bottom: 0px">{{ comment.body }}</p>
+                        <div class="float-right">
+                            <a class="btn btn-secondary" style="padding: 6px 20px">回复</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <h4>空空如也<a href="#">
+        </a></h4>
+    {% endif %}
+</div>
+
+

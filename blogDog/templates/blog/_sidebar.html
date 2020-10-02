@@ -1,0 +1,41 @@
+<div class="col-md-3" id="content-right-card">
+    <div class="card mb-3">
+        <h3 class="card-header">Dogville</h3>
+        <div class="card-body">
+            <h5 class="card-title">你看，那个人好像一条狗.</h5>
+            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+        </div>
+        <img style="height: 200px; width: 100%; display: block;"
+             src="{{ url_for('static', filename='images/pic.jpg') }}"
+             alt="Card image">
+        <!-- 文章分类统计 -->
+        <ul class="list-group list-group-flush">
+            {% if categories %}
+                {% for category in categories %}
+                    {% if not category.isSubject %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{ url_for('blog.show_category', category_id=category.id) }}">{{ category.name }}</a>
+                            <span class="badge badge-primary badge-pill">{{ category.posts|length }}</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+    {% if subjects %}
+        {% for subject in subjects %}
+            <div class="card " style="margin-bottom: 1rem !important;">
+                <div class="card-body">
+                    <h4 class="card-title">{{ subject.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">当前已完成{{ subject.posts|length }}篇</h6>
+                    {% if subject.subject_info %}
+                        <p style="margin-bottom: 0.5rem !important">{{ subject.subject_info }}</p>
+                    {% endif %}
+                    <a href="{{ url_for('blog.show_category', category_id=subject.id) }}"
+                       class="card-link text-warning subject-link">查看所有文章</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+</div>

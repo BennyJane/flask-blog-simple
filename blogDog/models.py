@@ -36,7 +36,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     isSubject = db.Column(db.Boolean, default=False)
-
+    subject_info = db.Column(db.Text)  # 添加备注信息
 
     # 一对多
     posts = db.relationship("Post", back_populates="category")

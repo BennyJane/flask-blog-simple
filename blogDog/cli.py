@@ -6,18 +6,23 @@
 # @Project : flask-blog-v1
 import click
 
-from blogDog.extensions import db
 from blogDog.models import Admin, Category
 
+'''
+这一部分可以直接写在 __init__.py 文件内， 不用传入db， 直接使用__init__.py 中引入的db全局变量
+'''
 
-def command(app):
+
+def command(app, db):
     @app.cli.command()
     @click.option('--base', is_flag=True, help='Create migration')
     def migrate(base):
         pass
 
 
-def command1(app):
+# todo 在该文件中直接引入db，会报错； ==》 ？？ db还没有绑定
+# todo db已经在__init__.py 文件中被引入了
+def command1(app, db):
     # 初始化数据库
     @app.cli.command()
     @click.option('--drop', is_flag=True, help='Create after drop.')
@@ -32,7 +37,7 @@ def command1(app):
         click.echo("Initialize database.")
 
 
-def command2(app):
+def command2(app, db):
     # todo prompt ? 必须输入该参数
     @app.cli.command()
     @click.option('--username', prompt=True, help='The username used to login.')
@@ -70,7 +75,7 @@ def command2(app):
         click.echo('Done.')
 
 
-def command3(app):
+def command3(app, db):
     @app.cli.command()
     @click.option('--category', default=10, help='Quantity of categories, default is 10.')
     @click.option('--post', default=50, help='Quantity of posts, default is 50.')

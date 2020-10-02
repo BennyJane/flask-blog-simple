@@ -10,7 +10,7 @@ import random
 from faker import Faker
 from sqlalchemy.exc import IntegrityError
 
-from blogDog import db
+from blogDog.extensions import db
 from blogDog.models import Admin, Category, Post, Comment, Link
 
 fake = Faker()
