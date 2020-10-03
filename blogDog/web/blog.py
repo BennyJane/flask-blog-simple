@@ -8,6 +8,7 @@ from flask import Blueprint, request, render_template, current_app, flash, redir
 from flask_login import current_user
 
 from blogDog.common.Helper import iPagination
+from blogDog.email import send_new_comment_email, send_new_reply_email
 from blogDog.extensions import db, csrf
 from blogDog.forms import CommentForm, AdminCommentForm
 from blogDog.models import Post, Category, Comment
@@ -118,6 +119,8 @@ def show_post(post_id):
             replied_comment = Comment.query.get_or_404(replied_id)
             comment.replied = replied_comment
             #  TODO 发送邮件
+            send_new_reply_email(replied_comment)
+
         db.session.add(comment)
         db.session.commit()
         if current_user.is_authenticated:
@@ -125,6 +128,7 @@ def show_post(post_id):
         else:
             flash("评论已完成，等待审核中，感谢你的参与。", "info")
             # todo 发送邮件
+            send_new_comment_email(post)
         return redirect(url_for(".show_post", post_id=post_id))
 
     return render_template('blog/post.html', page_params=page_params, comments=comments, post=post, form=form)

@@ -34,6 +34,14 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
+
+    # 邮件配置
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
+    MAIL_DEFAULT_SENDER = ('admin', MAIL_USERNAME)
     BLOGDOG_EMAIL = '2314255424@qq.com'
 
 
