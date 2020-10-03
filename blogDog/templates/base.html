@@ -29,8 +29,8 @@
                 {% include '_otherNav.html' %}
                 {% include '_adminNav.html' %}
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <form class="form-inline my-2 my-lg-0" method="post" action="{{ url_for('blog.search_post') }}">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
             </form>
         </div>

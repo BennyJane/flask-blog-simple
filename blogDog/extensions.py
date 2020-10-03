@@ -7,6 +7,7 @@
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
@@ -20,6 +21,7 @@ login_manager = LoginManager()
 # 需要添加，才能在前端页面使用
 ckeditor = CKEditor()
 csrf = CSRFProtect()
+mail = Mail()
 
 
 @login_manager.user_loader
@@ -31,5 +33,6 @@ def load_user(user_id):
 
 
 login_manager.login_view = 'auth.login'
-# login_manager.login_message = 'Your custom message'
+# 是视图函数内定义，就不需要再在这里写了
+# login_manager.login_message = 'A Dog，欢迎回来！'
 login_manager.login_message_category = 'warning'

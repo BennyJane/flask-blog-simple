@@ -2,7 +2,9 @@
 <div id="comments" style="margin-bottom: 1rem">
     {% if comments %}
         <!-- 评论数量 -->
-        <h4>{{ comments|length }}条评论 <a href="#">
+        <!-- todo 这里使用了 post, page_params ,但没有判断， 这两个整个页面内的 -->
+        <h4>{{ comments|length }}条评论 <a
+                href="{{ url_for('blog.show_post', post_id=post.id, page=page_params.total_pages or 1 ) }}">
             <small class="text-secondary">最新评论</small>
         </a></h4>
         <!-- 评论 -->
@@ -26,15 +28,15 @@
                         {% endif %}
                         <p class="lead" style="padding: 14px 0; margin-bottom: 0px">{{ comment.body }}</p>
                         <div class="float-right">
-                            <a class="btn btn-secondary" style="padding: 6px 20px">回复</a>
+                            <a class="btn btn-secondary" style="padding: 6px 20px"
+                               href="{{ url_for('blog.reply_comment', comment_id=comment.id) }}">回复</a>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
         </div>
     {% else %}
-        <h4>空空如也<a href="#">
-        </a></h4>
+        <h4>评论区：空空如也</h4>
     {% endif %}
 </div>
 

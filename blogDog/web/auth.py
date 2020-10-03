@@ -28,8 +28,7 @@ def login():
         if admin:
             if username == admin.username and admin.validate_password(password):
                 login_user(admin, remember)
-                print('oooooo')
-                flash('Welcome back.', 'info')
+                flash('A Dog， 欢迎登陆', 'info')
                 return redirect_back()
             flash('Invalid username or password.', 'warning')
         else:
@@ -40,5 +39,4 @@ def login():
 @auth_bp.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
-    flash('Logout success.', 'info')
     return redirect_back()

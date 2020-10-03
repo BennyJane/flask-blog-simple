@@ -1,4 +1,5 @@
 {% extends 'blog/index.html' %}
+{% from 'bootstrap/form.html' import render_form %}
 {% block title %}Home{% endblock title %}
 
 {% block recommendOrCategory %}
@@ -20,7 +21,7 @@
             <button type="button" class="btn btn-primary btn-sm" title="" data-container="body"
                     data-toggle="popover"
                     data-placement="right"
-                    data-content="http://localhost:63342/blog/templates/index.html?_ijt=o2edqjd0e3p1hg9ouoa5q42p6u"
+                    data-content="{{ request.full_path }}"
                     data-original-title="" aria-describedby="popover157663">Share
             </button>
         </div>
@@ -30,35 +31,22 @@
         {% include "_page.html" %}
     </div>
     <!-- 评论对象提示 -->
-    <div class="alert alert-dismissible alert-warning" style="padding: 0.75rem 1rem">
-        <h4 class="alert-heading" style="margin-bottom: 0">回复 <strong>Tom:</strong></h4>
-        <a href="#" type="button" class="close" data-dismiss="alert">&times;</a>
-    </div>
+    {% if request.args.get('reply') %}
+        {% if request.args.get('author') %}
+            <div class="alert alert-dismissible alert-warning" style="padding: 0.75rem 1rem">
+                <h4 class="alert-heading" style="margin-bottom: 0">回复 <strong>{{ request.args.get('author') }}:</strong>
+                </h4>
+                <a href="{{ url_for('.show_post', post_id=post.id) }}" type="button" class="close" data-dismiss="alert">&times;</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
     <!-- 评论的表单 -->
-    <div id="comment-form">
-        <form>
-            <fieldset>
-                <legend>评论</legend>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">昵称</label>
-                    <input type="text" class="form-control" id="exampleInputName"
-                           aria-describedby="emailHelp" placeholder="Enter Name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">邮箱</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                           aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                        anyone else.
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">留言</label>
-                    <input type="text" class="form-control" id="exampleInputComment"
-                           placeholder="Enter Comment">
-                </div>
-                <button type="submit" class="btn btn-primary">提交</button>
-            </fieldset>
-        </form>
-    </div>
+    {% if post.can_comment %}
+        <div id="comment-form">
+            {{ render_form(form, action=request.full_path) }}
+        </div>
+    {% else %}
+        <div class="tip"><h5>该文章没有开启评论功能.</h5></div>
+    {% endif %}
 {% endblock %}

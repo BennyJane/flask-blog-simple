@@ -8,7 +8,7 @@
 from flask import request, current_app, Blueprint, render_template, flash, url_for, redirect
 from flask_login import login_required
 
-from blogDog import Post, Category, db, Link
+from blogDog import Post, Category, db, Link, Comment
 from blogDog.common.Helper import iPagination
 from blogDog.common.utils import redirect_back
 from blogDog.forms import PostForm, CategoryForm, LinkForm
@@ -41,6 +41,28 @@ def manager_post():
     offset = (page - 1) * per_page
     posts = query.offset(offset).limit(per_page).all()
     return render_template('admin/manage_post.html', page=page, page_params=page_params, posts=posts)
+
+
+@admin_bp.route('/comment/manager')
+@login_required
+def manage_comment():
+    page = request.args.get('page', 1, type=int)
+    per_page = current_app.config['PER_PAGE']  # 考虑字符串问题
+    half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
+
+    query = Comment.query.order_by(Comment.timestamp.desc())
+    page_params = {
+        'total': query.count(),
+        'page_size': per_page,
+        'half_page_display': half_page_display,
+        'page': page,
+        'url': request.full_path.replace('&page={}'.format(page), "")  # 清空页码
+    }
+    page_params = iPagination(page_params)
+    # 筛选当前页面的数据
+    offset = (page - 1) * per_page
+    comments = query.offset(offset).limit(per_page).all()
+    return render_template('admin/manage_comment.html', page=page, page_params=page_params, comments=comments)
 
 
 @admin_bp.route('/category/manage')
@@ -224,3 +246,49 @@ def delete_link(link_id):
     db.session.commit()
     flash("删除成功", "success")
     return redirect(url_for("admin.manage_link"))
+
+
+@admin_bp.route('/comment/<int:comment_id>/delete', methods=['POST'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    flash("删除成功", "success")
+    return redirect(url_for("admin.manage_comment"))
+
+
+'''
+==================================================================== forbidden
+'''
+
+
+@admin_bp.route('/post/<int:post_id>/forbidden', methods=['POST'])
+@login_required
+def forbidden_comment(post_id):
+    post = Post.query.get_or_404(post_id)
+    # 拆解写法
+    if post.can_comment:
+        post.can_comment = False
+        flash('关闭评论~', 'success')
+    else:
+        post.can_comment = True
+        flash('开启评论~', 'success')
+    db.session.add(post)
+    db.session.commit()
+    return redirect_back()
+
+
+@admin_bp.route('/comment/<int:comment_id>/approve', methods=['POST'])
+@login_required
+def approve_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+    if comment.reviewed:
+        comment.reviewed = False
+        flash('隐藏评论~', 'success')
+    else:
+        comment.reviewed = True
+        flash('发布评论~', 'success')
+    db.session.add(comment)
+    db.session.commit()
+    return redirect_back()

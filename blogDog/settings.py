@@ -34,6 +34,7 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
+    BLOGDOG_EMAIL = '2314255424@qq.com'
 
 
 class TestingConfig(BaseConfig):

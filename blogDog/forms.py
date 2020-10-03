@@ -6,8 +6,8 @@
 # @Project : flask-blog-v1
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, PasswordField, SelectField, TextAreaField
-from wtforms.validators import DataRequired, Length, URL
+from wtforms import StringField, SubmitField, BooleanField, PasswordField, SelectField, TextAreaField, HiddenField
+from wtforms.validators import DataRequired, Length, URL, Email
 
 from blogDog import Category
 
@@ -48,3 +48,17 @@ class LinkForm(FlaskForm):
     url = TextAreaField('网址', validators=[URL()], default='')
     message = TextAreaField("简介", default='')
     submit = SubmitField("新增", render_kw={'style': 'background-color: black; color: white'})
+
+
+class CommentForm(FlaskForm):
+    author = StringField('名称', validators=[DataRequired(), Length(1, 30)])
+    email = StringField("邮箱", validators=[DataRequired(), Email()])
+    # site = db.Column(db.String(255), default='')
+    body = TextAreaField("评论", validators=[DataRequired()])
+    submit = SubmitField("提交", render_kw={'style': 'background-color: black; color: white'})
+
+
+class AdminCommentForm(CommentForm):
+    # 继承评论类
+    author = HiddenField()
+    email = HiddenField()
