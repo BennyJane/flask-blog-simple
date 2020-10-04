@@ -16,11 +16,13 @@ from blogDog.errors import register_errors
 from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf, mail
 from blogDog.log import register_logging
 from blogDog.models import Admin, Post, Category, Comment, Link
+from blogDog import models
 from blogDog.settings import config
 from blogDog.views import indexView
 from blogDog.web.admin import admin_bp
 from blogDog.web.auth import auth_bp
 from blogDog.web.blog import blog_bp
+from blogDog.web.taskAndlinks import task_bp
 
 
 def create_app(config_name=None):
@@ -64,8 +66,9 @@ def register_commands(app):
 
 def register_blueprint(app):
     app.register_blueprint(blog_bp)
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(auth_bp, url_prefix='/auth') # 前有斜杠， 后可无
     app.register_blueprint(admin_bp, url_prefix='/admin')
+    app.register_blueprint(task_bp, url_prefix='/task')
 
 
 def register_shell_context(app):
@@ -83,7 +86,7 @@ def register_template_context(app):
     def make_template_context():
         admin = Admin.query.first()
         categories = Category.query.order_by(Category.name).all()
-        links = Link.query.order_by(Link.name).all()
+        links = Link.query.order_by(Link.timestamp.desc()).all()
         subjects = Category.query.filter_by(isSubject=True).all()
         recommends = Post.query.filter_by(isRecommend=True).order_by(Post.timestamp.desc()).all()
         if current_user.is_authenticated:

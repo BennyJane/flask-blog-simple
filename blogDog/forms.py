@@ -8,7 +8,7 @@ from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField, PasswordField, SelectField, TextAreaField, HiddenField
 from wtforms.validators import DataRequired, Length, URL, Email
-
+from datetime import date
 from blogDog import Category
 
 
@@ -28,7 +28,7 @@ class PostForm(FlaskForm):
     can_comment = BooleanField("是否可以评论", default=True)
     isRecommend = BooleanField("是否推荐该文章", default=False)
     body = CKEditorField('正文', validators=[DataRequired()])
-    submit = SubmitField("新增", render_kw={'style': 'background-color: black; color: white'})
+    submit = SubmitField("提交", render_kw={'style': 'background-color: black; color: white'})
 
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
@@ -40,14 +40,16 @@ class CategoryForm(FlaskForm):
     name = StringField('分类名称', validators=[DataRequired(), Length(1, 100)])
     isSubject = BooleanField('是否是专题文章', default=False)
     subject_info = TextAreaField("分类或者专题文章的简介", default='')
-    submit = SubmitField("新增", render_kw={'style': 'background-color: black; color: white'})
+    submit = SubmitField("提交", render_kw={'style': 'background-color: black; color: white'})
 
 
 class LinkForm(FlaskForm):
     name = StringField('名称', validators=[DataRequired(), Length(1, 100)])
-    url = TextAreaField('网址', validators=[URL()], default='')
+    # url = TextAreaField('网址', validators=[URL()], default='')
     message = TextAreaField("简介", default='')
-    submit = SubmitField("新增", render_kw={'style': 'background-color: black; color: white'})
+    timestamp = StringField("日期", default=date.today().isoformat())
+    url = TextAreaField('网址', validators=[], default='')
+    submit = SubmitField("提交", render_kw={'style': 'background-color: black; color: white'})
 
 
 class CommentForm(FlaskForm):

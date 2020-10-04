@@ -1,14 +1,15 @@
 {% extends 'admin/_admin_base.html' %}
 
 {% block adminContent %}
-    <legend>分类列表</legend>
+    <legend>分类列表({{ links|length }}条记录)</legend>
     <table class="table table-hover">
         <thead class="table-cell">
         <tr>
             <th scope="col">序号</th>
             <th scope="col">名称</th>
-            <th scope="col">链接</th>
             <th scope="col">简介</th>
+            <th scope="col">日期</th>
+{#            <th scope="col">链接</th>#}
             <th scope="col">操作</th>
         </tr>
         </thead>
@@ -18,12 +19,13 @@
                 <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ link.name }}</td>
-                    {% if link.url %}
-                        <td>{{ link.url }}</td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
                     <td>{{ link.message }}</td>
+                    {% if link.timestamp %}
+                    <td>{{ moment(link.timestamp).format('Y-M-D')  }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+{#                    <td>{{ link.url }}</td>#}
                     <td class="table-deal">
                         <div class="justify-content-between">
                             <a type="button" class="btn btn-primary btn-sm"

@@ -87,6 +87,7 @@ class Comment(db.Model):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
+    name = db.Column(db.String(255))
     url = db.Column(db.String(255))
     message = db.Column(db.Text, default='')  # 添加备注信息
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)

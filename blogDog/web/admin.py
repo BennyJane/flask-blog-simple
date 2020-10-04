@@ -4,7 +4,9 @@
 # @Email : 暂无
 # @File : blog.py
 # @Project : flask-blog-v1
-
+import time
+from datetime import datetime
+from dateutil.parser import parse
 from flask import request, current_app, Blueprint, render_template, flash, url_for, redirect
 from flask_login import login_required
 
@@ -138,8 +140,9 @@ def new_link():
         name = form.name.data
         url = form.url.data
         message = form.message.data
+        timestamp = form.timestamp.data
 
-        link = Link(name=name, url=url, message=message)
+        link = Link(name=name, url=url, message=message, timestamp=timestamp)
         db.session.add(link)
         db.session.commit()
         flash("添加成功", "success")
@@ -230,6 +233,8 @@ def edit_link(link_id):
         link.name = form.name.data
         link.url = form.url.data
         link.message = form.message.data
+        inputTime = form.timestamp.data
+        link.timestamp = parse(inputTime)   # todo 转化为时间格式
 
         db.session.add(link)
         db.session.commit()
@@ -238,6 +243,7 @@ def edit_link(link_id):
     form.name.data = link.name
     form.url.data = link.url
     form.message.data = link.message
+    form.timestamp.data = link.timestamp
     return render_template('admin/edit_link.html', form=form)
 
 
