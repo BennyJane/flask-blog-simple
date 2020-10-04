@@ -51,6 +51,8 @@ def manage_comment():
     half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
 
     query = Comment.query.order_by(Comment.timestamp.desc())
+    if request.args.get('filter') == 'unPublish':
+        query = Comment.query.filter_by(reviewed=False).order_by(Comment.timestamp.desc())
     page_params = {
         'total': query.count(),
         'page_size': per_page,
@@ -212,8 +214,9 @@ def edit_category(category_id):
 @login_required
 def delete_category(category_id):
     category = Category.query.get_or_404(category_id)
-    db.session.delete(category)
-    db.session.commit()
+    if category.id == 1:
+        flash("默认分组不能删除")
+    category.delete()
     flash("删除成功", "success")
     return redirect(url_for("admin.manage_category"))
 

@@ -29,3 +29,8 @@ flask init --username benny --password blogdog
 flask forge
 # 可以查询参数，自定义参数
 ```
+
+4.启动项目
+```bash
+flask run -p 8000
+```

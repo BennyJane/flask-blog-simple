@@ -7,6 +7,7 @@
         <tr>
             <th scope="col">序号</th>
             <th scope="col">名称</th>
+            <th scope="col">文章数量</th>
             <th scope="col">是否为专题</th>
             <th scope="col">是否为推荐文章</th>
             <th scope="col">操作</th>
@@ -18,6 +19,7 @@
                 <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ category.name }}</td>
+                    <td>{{ category.posts|length }}</td>
                     <td>{{ category.isSubject }}</td>
                     <td>{{ category.subject_info }}</td>
                     <td class="table-deal">

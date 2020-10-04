@@ -9,8 +9,8 @@
                 <p class="card-text" style="color: #919aa1 !important">{{ post.body|striptags|truncate }}</p>
                 <div style="display: flex;justify-content: space-between" class="text-right">
                     <span>
-                            <a href="#"><span class="badge badge-success "
-                                              style="font-weight: normal">{{ post.category.name }}</span></a>
+                        <a href="{{ url_for('.show_category', category_id=post.category.id) }}"><span class="badge badge-success "
+                                style="font-weight: normal">{{ post.category.name }}</span></a>
                         {% if post.category.isSubject %}
                             <a href="#"><span class="badge badge-warning"
                                               style="font-weight: normal;">专题文章</span></a>

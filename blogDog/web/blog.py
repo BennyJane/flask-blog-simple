@@ -71,7 +71,6 @@ def show_category(category_id):
     # 筛选当前页面的数据
     offset = (page - 1) * per_page
     posts = query.offset(offset).limit(per_page).all()
-
     return render_template('blog/category.html', category=category, page_params=page_params, posts=posts)
 
 

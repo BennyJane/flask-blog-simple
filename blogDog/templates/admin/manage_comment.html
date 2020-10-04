@@ -2,6 +2,18 @@
 
 {% block adminContent %}
     <legend>评论列表</legend>
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link {% if request.args.get('filter', 'all') == 'all' %}active {% endif %}"
+               href="{{ url_for('admin.manage_comment', filter='all') }}">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.args.get('filter')=='unPublish' %}active {% endif %}"
+               href="{{ url_for('admin.manage_comment', filter='unPublish') }}">待审核</a>
+        </li>
+    </ul>
+
     <table class="table table-hover">
         <thead class="table-cell">
         <tr>
@@ -17,10 +29,11 @@
             {% for comment in comments %}
                 <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
                     <th scope="row">{{ loop.index }}</th>
-                    <td style="max-width: 300px"><a
-                            href="{{ url_for('blog.show_post', post_id=comment.post_id) }}">{{ comment.post.title }}</a></td>
                     <td>{{ comment.author }}</td>
-                    <td>{{ moment(comment.timestamp).format('LLL') }}</td>
+                    <td style="max-width: 300px"><a
+                            href="{{ url_for('blog.show_post', post_id=comment.post_id) }}">{{ comment.body }}</a>
+                    </td>
+                    <td>{{ moment(comment.timestamp).format('Y-M-D H:m') }}</td>
                     <td class="table-deal">
                         <div class="justify-content-between">
                             <form class="inline" method="post"

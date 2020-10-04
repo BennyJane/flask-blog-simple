@@ -12,7 +12,9 @@ from flask import Flask
 from flask_login import current_user
 
 from blogDog.cli import command, command1, command2, command3
+from blogDog.errors import register_errors
 from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf, mail
+from blogDog.log import register_logging
 from blogDog.models import Admin, Post, Category, Comment, Link
 from blogDog.settings import config
 from blogDog.views import indexView
@@ -34,6 +36,8 @@ def create_app(config_name=None):
     register_commands(app)
     register_blueprint(app)
     register_template_context(app)
+    register_errors(app)
+    register_logging(app)
 
     return app
 

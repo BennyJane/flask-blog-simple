@@ -20,9 +20,9 @@
                     <th scope="row">{{ loop.index }}</th>
                     <td style="max-width: 300px"><a
                             href="{{ url_for('blog.show_post', post_id=post.id) }}">{{ post.title }}</a></td>
-                    <td>{{ post.catetory }}</td>
+                    <td>{{ post.category.name }}</td>
                     <td>{{ post.comments|length }}</td>
-                    <td>{{ moment(post.timestamp).format('LLL') }}</td>
+                    <td>{{ moment(post.timestamp).format('Y-M-D H:m') }}</td>
                     <td class="table-deal">
                         <div class="justify-content-between">
                             <a type="button" class="btn btn-primary btn-sm"
