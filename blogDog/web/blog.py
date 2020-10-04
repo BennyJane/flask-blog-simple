@@ -147,7 +147,6 @@ def reply_comment(comment_id):
 
 '''
 ==================================================================== search
-1. 标题内容
 '''
 
 
@@ -180,3 +179,4 @@ def search_post():
     posts = query.offset(offset).limit(per_page).all()
 
     return render_template('blog/index.html', page_params=page_params, posts=posts)
+

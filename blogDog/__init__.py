@@ -12,6 +12,7 @@ from flask import Flask
 from flask_login import current_user
 
 from blogDog.cli import command, command1, command2, command3
+from blogDog.common.utils import register_app_filter
 from blogDog.errors import register_errors
 from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf, mail
 from blogDog.log import register_logging
@@ -41,6 +42,7 @@ def create_app(config_name=None):
     register_errors(app)
     register_logging(app)
 
+    register_app_filter(app)
     return app
 
 
@@ -95,3 +97,4 @@ def register_template_context(app):
             unread_comments = None
         return dict(admin=admin, categories=categories, links=links, recommends=recommends
                     , unread_comments=unread_comments, subjects=subjects)
+

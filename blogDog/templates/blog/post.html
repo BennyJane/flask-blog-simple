@@ -21,8 +21,8 @@
             <button type="button" class="btn btn-primary btn-sm" title="" data-container="body"
                     data-toggle="popover"
                     data-placement="right"
-                    data-content="{{ request.full_path }}"
-                    data-original-title="" aria-describedby="popover157663">Share
+                    data-content="{{ url_for('blog.show_post', post_id=post.id, _external=True) }}"
+                    data-original-title="" aria-describedby="popover157663">分享
             </button>
         </div>
         <!-- 评论模块 -->

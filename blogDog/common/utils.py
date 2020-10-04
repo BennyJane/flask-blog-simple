@@ -8,6 +8,8 @@ try:
     from urlparse import urlparse, urljoin
 except ImportError:
     from urllib.parse import urlparse, urljoin
+import random
+
 from flask import request, redirect, url_for
 
 
@@ -24,3 +26,16 @@ def redirect_back(default='blog.index', **kwargs):
         if is_safe_url(target):
             return redirect(target)
     return redirect(url_for(default, **kwargs))
+
+
+def register_app_filter(app):
+    @app.template_filter()
+    def randomLink(links):
+        link = random.choice(links)
+        res = {
+            'title': link.title,
+            'body': link.body,
+            'id': link.id,
+        }
+        print(res)
+        return res
