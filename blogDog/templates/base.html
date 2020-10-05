@@ -9,13 +9,13 @@
         <link rel="stylesheet"
               href="{{ url_for('static', filename='css/Lux.min.css') }}"
               type="text/css">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon1.png') }}"  type="image/x-icon">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon1.png') }}" type="image/x-icon">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% endblock head %}
 </head>
 <body>
 {% block nav %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding: 0.6rem 2rem">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding: 0.6rem 2rem;">
         <a class="navbar-brand" href="{{ url_for('blog.index') }}">PyGoRun</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,18 +25,28 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('blog.index') }}">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url_for('blog.index') }}">Home<span
+                            class="sr-only">(current)</span></a>
                 </li>
                 {% include '_otherNav.html' %}
                 {% include '_adminNav.html' %}
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post" action="{{ url_for('blog.search_post') }}">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="">搜索</button>
             </form>
         </div>
     </nav>
 {% endblock nav %}
+
+
+<!-- 添加背景图效果
+<div class="bg-fog">
+{#{{ url_for('static', filename='images/bg/bg11.jpg') }}#}
+    <div class="index-bg" style="background-image:url('')">
+    </div>
+</div>
+-->
 
 {% block mainBody %}
 {% endblock %}

@@ -60,6 +60,16 @@ footer {
     /*min-width: 260px;*/
 }
 
-.subject-link {
+.index-bg {
+    position: absolute;
+    z-index: -10;
+    padding: 1rem 0;
+    min-width: 100%;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
+.bg-fog {
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
 }
