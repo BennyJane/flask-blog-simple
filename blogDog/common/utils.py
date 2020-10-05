@@ -37,5 +37,5 @@ def register_app_filter(app):
             'body': link.body,
             'id': link.id,
         }
-        print(res)
+        # print(res)
         return res

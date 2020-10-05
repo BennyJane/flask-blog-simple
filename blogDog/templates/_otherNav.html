@@ -1,23 +1,27 @@
 {% block extensionNav %}
-{#    <li class="nav-item">#}
-{#        <a class="nav-link" href="#">专题</a>#}
-{#    </li>#}
+    {#    <li class="nav-item">#}
+    {#        <a class="nav-link" href="#">专题</a>#}
+    {#    </li>#}
     <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('task.index') }}">TASKS</a>
+        <a class="nav-link" href="{{ url_for('task.index') }}">TASKS</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ url_for('visual.index') }}">Visual</a>
     </li>
-    {#    <li class="nav-item dropdown">#}
-{#        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"#}
-{#           aria-haspopup="true"#}
-{#           aria-expanded="false">others</a>#}
-{#        <div class="dropdown-menu">#}
-{#            <a class="dropdown-item" href="#">WORK</a>#}
-{#            <a class="dropdown-item" href="#">TODO</a>#}
-{#            <a class="dropdown-item" href="#">PICTURES</a>#}
-{#            <div class="dropdown-divider"></div>#}
-{#            <a class="dropdown-item" href="#">...</a>#}
-{#        </div>#}
-{#    </li>#}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+           aria-haspopup="true"
+           aria-expanded="false">Themes</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ url_for('blog.change_theme', theme_name='Lux') }}">Lux</a>
+            <a class="dropdown-item" href="{{ url_for('blog.change_theme', theme_name='Sketchy') }}">Sketchy</a>
+            <a class="dropdown-item" href="{{ url_for('blog.change_theme', theme_name='Litera') }}">Litera</a>
+            <a class="dropdown-item" href="{{ url_for('blog.change_theme', theme_name='Sandstone') }}">Sandstone</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ url_for('blog.change_codeStyle', code_style='agate') }}">agate</a>
+            <a class="dropdown-item" href="{{ url_for('blog.change_codeStyle', code_style='dark') }}">dark</a>
+            <a class="dropdown-item" href="{{ url_for('blog.change_codeStyle', code_style='zenburn') }}">zenburn</a>
+
+        </div>
+    </li>
 {% endblock %}

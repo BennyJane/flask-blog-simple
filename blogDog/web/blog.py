@@ -4,10 +4,11 @@
 # @Email : 暂无
 # @File : blog.py
 # @Project : flask-blog-v1
-from flask import Blueprint, request, render_template, current_app, flash, redirect, url_for
+from flask import Blueprint, request, render_template, current_app, flash, redirect, url_for, abort, make_response
 from flask_login import current_user
 
 from blogDog.common.Helper import iPagination
+from blogDog.common.utils import redirect_back
 from blogDog.email import send_new_comment_email, send_new_reply_email
 from blogDog.extensions import db, csrf
 from blogDog.forms import CommentForm, AdminCommentForm
@@ -181,3 +182,29 @@ def search_post():
     posts = query.offset(offset).limit(per_page).all()
 
     return render_template('blog/index.html', page_params=page_params, posts=posts)
+
+
+'''
+==================================================================== setting
+'''
+
+
+@blog_bp.route('/change-theme/<theme_name>', methods=['GET', 'POST'])
+def change_theme(theme_name):
+    if theme_name not in current_app.config['BLOGDOG_THEMES'].keys():
+        abort(403)
+
+    # 将主题名称保存在cookie中 todo base页面引入css的时候， 需要重全局变量 cookie中获取
+    response = make_response(redirect_back())
+    response.set_cookie('theme', theme_name, max_age=30 * 24 * 60 * 60)
+    return response
+
+
+@blog_bp.route('/change-code-style/<code_style>', methods=['GET'])
+def change_codeStyle(code_style):
+    if code_style not in current_app.config['BLOGDOG_CODE_STYLE']:
+        abort(403)
+
+    response = make_response(redirect_back())
+    response.set_cookie('code_style', code_style, max_age=30 * 24 * 60 * 60)
+    return response

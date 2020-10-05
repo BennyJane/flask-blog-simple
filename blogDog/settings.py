@@ -30,6 +30,19 @@ class BaseConfig(object):
     # 分页设置
     PER_PAGE = 10
     HALF_PAGE_DISPLAY = 2  # 当前页码每侧展示的页码个数
+    BLOGDOG_THEMES = {
+        'Lux': 'Lux',
+        'Sketchy': 'Sketchy',
+        'Litera': 'Litera',
+        'Sandstone': 'Sandstone',  # 褐色颜色很好，部分字体需要调整
+        # 'Flatly': 'Flatly',  # 颜色搭配不好
+
+        # 'Minty': 'Minty',   # 太粉嫩
+        # 'Journal': 'Journal',  # 颜色不和谐
+    }
+    BLOGDOG_CODE_STYLE =['agate', 'dark', 'zenburn']
+
+    # 主题颜色设置
 
 
 class DevelopmentConfig(BaseConfig):

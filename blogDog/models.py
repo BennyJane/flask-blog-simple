@@ -63,9 +63,7 @@ class Category(db.Model):
 
     def delete(self):
         default_category = Category.query.get(1)
-        print(type(self.posts))
         posts = self.posts[:]  # todo ??
-        print(posts)
         for post in posts:
             post.category = default_category
         db.session.delete(self)
@@ -102,23 +100,22 @@ class Post(db.Model):
             return do_truncate(do_striptags(_html), True, length=150)
 
         value = target.body
-        print('value =============', value)
+        # print('value =============', value)
         if target.sub_title is None or target.sub_title.strip() == '':
             _match = pattern_hasmore.search(value)
             if _match is not None:
                 more_start = _match.start()
-                print(more_start)
+                # print(more_start)
                 target.sub_title = _format(markitup(value[:more_start]))
             else:
                 target.sub_title = _format(target.body_html)
 
     @staticmethod
     def on_change_content(target, value, oldvalue, initiator):
-        print(value, '========================= value')
+        # print(value, '========================= value')
         target.body_html = markitup(value)
-        print(target.body_html)
+        # print(target.body_html)
 
-        # TODO 有问题
         def _format(_html):
             return do_truncate(do_striptags(_html), True, length=150)
 
