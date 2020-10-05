@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Visual{% endblock %}
+
+{% block mainBody %}
+    <div class="container col-md-8">
+        <h5>~敬请期待~</h5>
+    </div>
+    <!-- 返回顶部 -->
+    <div style="position: fixed; right: 30px; bottom: 10vh">
+        <span class="float-lg-right"><a href="#top">Back to top</a></span>
+    </div>
+    <!-- 页脚 -->
+    <div class="container col-md-8">
+        {% include 'task/_footer.html' %}
+    </div>
+{% endblock %}
+

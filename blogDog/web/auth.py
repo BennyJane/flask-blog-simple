@@ -33,7 +33,7 @@ def login():
             flash('Invalid username or password.', 'warning')
         else:
             flash('No account.', 'warning')
-    return render_template('auth/index.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 
 @auth_bp.route('/logout', methods=['GET', 'POST'])

@@ -24,10 +24,12 @@ half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
 @blog_bp.route('/')
 def index():
     page = request.args.get('page', 1, type=int)
-    query = Post.query.order_by(Post.timestamp.desc())
     per_page = current_app.config['PER_PAGE']  # 考虑字符串问题
     half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
 
+    query = Post.query.filter_by(published=True).order_by(Post.timestamp.desc())
+    # print(query.count())
+    # print(query.first().published)
     page_params = {
         'total': query.count(),
         'page_size': per_page,
@@ -56,9 +58,9 @@ def show_category(category_id):
     half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
     if category.isSubject:
         # 专题文航按照名称排序，方便文章序列的良好化
-        query = Post.query.with_parent(category).order_by(Post.title.asc())
+        query = Post.query.filter_by(published=True).with_parent(category).order_by(Post.title.asc())
     else:
-        query = Post.query.with_parent(category).order_by(Post.timestamp.desc())
+        query = Post.query.filter_by(published=True).with_parent(category).order_by(Post.timestamp.desc())
     # 源码中提供的方法
     page_params = {
         'total': query.count(),  # 避免使用all() 查询过多数据
@@ -179,4 +181,3 @@ def search_post():
     posts = query.offset(offset).limit(per_page).all()
 
     return render_template('blog/index.html', page_params=page_params, posts=posts)
-

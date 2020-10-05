@@ -1,5 +1,12 @@
 {% extends 'blog/index.html' %}
 {% from 'bootstrap/form.html' import render_form %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='editormd/css/editormd.min.css') }}">
+{% endblock %}
+
 {% block title %}Home{% endblock title %}
 
 {% block recommendOrCategory %}
@@ -13,7 +20,14 @@
         <p class="lead">分类：{{ post.category.name }} ；
             发布时间：{{ post.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
         <hr class="my-3">
-        <p>{{ post.body }}</p>
+        <p class="lead">
+            {# 优先显示html类型内容 #}
+            {% if post.body_html %}
+                {{ post.body_html | safe }}
+            {% else %}
+                {{ post.body }}
+            {% endif %}
+        </p>
         <hr class="my-3">
         <!-- 右侧内容框 -->
         <div style="margin-bottom: 1rem">
@@ -49,4 +63,13 @@
     {% else %}
         <div class="tip"><h5>该文章没有开启评论功能.</h5></div>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <!-- 最佳样式 agate | dark | zenburn -->
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

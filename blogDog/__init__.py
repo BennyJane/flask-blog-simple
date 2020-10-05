@@ -24,6 +24,7 @@ from blogDog.web.admin import admin_bp
 from blogDog.web.auth import auth_bp
 from blogDog.web.blog import blog_bp
 from blogDog.web.taskAndlinks import task_bp
+from blogDog.web.visual import visual_bp
 
 
 def create_app(config_name=None):
@@ -71,6 +72,7 @@ def register_blueprint(app):
     app.register_blueprint(auth_bp, url_prefix='/auth') # 前有斜杠， 后可无
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(task_bp, url_prefix='/task')
+    app.register_blueprint(visual_bp, url_prefix='/visual')
 
 
 def register_shell_context(app):

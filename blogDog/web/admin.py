@@ -4,8 +4,6 @@
 # @Email : 暂无
 # @File : blog.py
 # @Project : flask-blog-v1
-import time
-from datetime import datetime
 from dateutil.parser import parse
 from flask import request, current_app, Blueprint, render_template, flash, url_for, redirect
 from flask_login import login_required
@@ -93,7 +91,6 @@ def manage_link():
 @login_required
 def new_post():
     form = PostForm()
-    print(form.category.choices)
     if form.validate_on_submit():
         title = form.title.data
         sub_title = form.sub_title.data
@@ -101,8 +98,10 @@ def new_post():
         category = Category.query.get(form.category.data)
         can_comment = form.can_comment.data
         isRecommend = form.isRecommend.data
+        published = form.published.data
         body = form.body.data
-        post = Post(title=title, body=body, category=category,
+        # print(body)
+        post = Post(title=title, body=body, category=category, published=published,
                     sub_title=sub_title, can_comment=can_comment, isRecommend=isRecommend)
         db.session.add(post)
         db.session.commit()
@@ -169,6 +168,8 @@ def edit_post(post_id):
         post.category = Category.query.get(form.category.data)
         post.can_comment = form.can_comment.data
         post.isRecommend = form.isRecommend.data
+        post.published = form.published.data
+        # print(form.body.data)
         post.body = form.body.data
         db.session.add(post)
         db.session.commit()
@@ -234,7 +235,7 @@ def edit_link(link_id):
         link.url = form.url.data
         link.message = form.message.data
         inputTime = form.timestamp.data
-        link.timestamp = parse(inputTime)   # todo 转化为时间格式
+        link.timestamp = parse(inputTime)  # todo 转化为时间格式
 
         db.session.add(link)
         db.session.commit()

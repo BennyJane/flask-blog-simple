@@ -27,7 +27,9 @@ class PostForm(FlaskForm):
     category = SelectField("分类", coerce=int, default=1)
     can_comment = BooleanField("是否可以评论", default=True)
     isRecommend = BooleanField("是否推荐该文章", default=False)
-    body = CKEditorField('正文', validators=[DataRequired()])
+    body = TextAreaField('正文', validators=[DataRequired()])
+    published = BooleanField("是否立即发布", default=True)
+    # body = CKEditorField('正文', validators=[DataRequired()])
     submit = SubmitField("提交", render_kw={'style': 'background-color: black; color: white'})
 
     def __init__(self, *args, **kwargs):

@@ -4,12 +4,32 @@
 # @Email : 暂无
 # @File : __init__.py
 # @Project : flask-blog-v1
+import re
 from datetime import datetime
 
 from flask_login import UserMixin
+from jinja2.filters import do_truncate, do_striptags
+from markdown import markdown
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from blogDog.extensions import db
+
+pattern_hasmore = re.compile(r"<!--more-->", re.I)
+
+
+def markitup(text):
+    # 将 markdown 转为 HTML
+
+    # 删除与段落相关的标签，只留下格式化字符的标签
+    # allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
+    #                 'em', 'i', 'li', 'ol', 'pre', 'strong', 'ul',
+    #                 'h1', 'h2', 'h3', 'p', 'img']
+    return markdown(text, extensions=['extra'], output_format='html5')
+    # return bleach.linkify(markdown(text, extensions=['extra'], output_format='html5'))
+    # return bleach.linkify(bleach.clean(
+    #     # markdown默认不识别三个反引号的code-block，需开启扩展
+    #     markdown(text, extensions=['extra'], output_format='html5'),
+    #     tags=allowed_tags, strip=True))
 
 
 class Admin(db.Model, UserMixin):
@@ -51,20 +71,71 @@ class Category(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    @property
+    def getPostNum(self):
+        num = 0
+        for post in self.posts:
+            if post.published:
+                num += 1
+        return num
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     sub_title = db.Column(db.Text)
     body = db.Column(db.Text)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
+    body_html = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, default=datetime.now, index=True)
     can_comment = db.Column(db.Boolean, default=True)
     isRecommend = db.Column(db.Boolean, default=False)
+    published = db.Column(db.Boolean, default=True)  # 是否发布文章
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
     category = db.relationship("Category", back_populates="posts")
     comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
+
+    @staticmethod
+    def before_insert(mapper, connection, target):
+        def _format(_html):
+            return do_truncate(do_striptags(_html), True, length=150)
+
+        value = target.body
+        print('value =============', value)
+        if target.sub_title is None or target.sub_title.strip() == '':
+            _match = pattern_hasmore.search(value)
+            if _match is not None:
+                more_start = _match.start()
+                print(more_start)
+                target.sub_title = _format(markitup(value[:more_start]))
+            else:
+                target.sub_title = _format(target.body_html)
+
+    @staticmethod
+    def on_change_content(target, value, oldvalue, initiator):
+        print(value, '========================= value')
+        target.body_html = markitup(value)
+        print(target.body_html)
+
+        # TODO 有问题
+        def _format(_html):
+            return do_truncate(do_striptags(_html), True, length=150)
+
+        if target.sub_title is None or target.sub_title.strip() == '':
+            _match = pattern_hasmore.search(value)
+            if _match is not None:
+                more_start = _match.start()
+                target.summary = _format(markitup(value[:more_start]))
+                # target.sub_title = markitup(value[:more_start])
+            else:
+                target.summary = target.body_html
+                # target.sub_title = _format(target.body_html)
+
+
+# 事件监听
+db.event.listen(Post.body, 'set', Post.on_change_content)
+db.event.listen(Post, 'before_insert', Post.before_insert)
 
 
 class Comment(db.Model):

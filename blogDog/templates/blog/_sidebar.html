@@ -15,7 +15,7 @@
                     {% if not category.isSubject %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="{{ url_for('blog.show_category', category_id=category.id) }}">{{ category.name }}</a>
-                            <span class="badge badge-primary badge-pill">{{ category.posts|length }}</span>
+                            <span class="badge badge-primary badge-pill">{{ category.getPostNum }}</span>
                         </li>
                     {% endif %}
                 {% endfor %}
