@@ -13,13 +13,6 @@ from blogDog.models import Admin, Category
 '''
 
 
-def command(app, db):
-    @app.cli.command()
-    @click.option('--base', is_flag=True, help='Create migration')
-    def migrate(base):
-        pass
-
-
 # todo 在该文件中直接引入db，会报错； ==》 ？？ db还没有绑定
 # todo db已经在__init__.py 文件中被引入了
 def command1(app, db):
