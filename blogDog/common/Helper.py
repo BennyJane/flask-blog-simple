@@ -47,3 +47,13 @@ def iPagination(params):
     ret['page_size'] = page_size
     ret['range'] = range(ret['from'], ret['to'] + 1)
     return ret
+
+
+def getTitleIndex(title):
+    title = title.replace(',', '.').replace('，', '.')
+    if '.' in title:
+        try:
+            index = int(title.split('.'))
+        except Exception as e:
+            index = 100
+    return index

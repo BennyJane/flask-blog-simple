@@ -7,7 +7,7 @@
 from flask import Blueprint, request, render_template, current_app, flash, redirect, url_for, abort, make_response
 from flask_login import current_user
 
-from blogDog.common.Helper import iPagination
+from blogDog.common.Helper import iPagination, getTitleIndex
 from blogDog.common.utils import redirect_back
 from blogDog.email import send_new_comment_email, send_new_reply_email
 from blogDog.extensions import db, csrf
@@ -57,11 +57,9 @@ def show_category(category_id):
     page = request.args.get('page', 1, type=int)
     per_page = current_app.config['PER_PAGE']  # 考虑字符串问题
     half_page_display = int(current_app.config["HALF_PAGE_DISPLAY"])
-    if category.isSubject:
-        # 专题文航按照名称排序，方便文章序列的良好化
-        query = Post.query.filter_by(published=True).with_parent(category).order_by(Post.title.asc())
-    else:
-        query = Post.query.filter_by(published=True).with_parent(category).order_by(Post.timestamp.desc())
+
+    query = Post.query.filter_by(published=True).with_parent(category).order_by(Post.timestamp.desc())
+
     # 源码中提供的方法
     page_params = {
         'total': query.count(),  # 避免使用all() 查询过多数据
@@ -73,7 +71,12 @@ def show_category(category_id):
     page_params = iPagination(page_params)
     # 筛选当前页面的数据
     offset = (page - 1) * per_page
+
     posts = query.offset(offset).limit(per_page).all()
+    if category.isSubject:
+        # 专题文航按照名称排序，方便文章序列的良好化
+        posts = sorted(posts, key=lambda x: getTitleIndex(x.title))
+
     return render_template('blog/category.html', category=category, page_params=page_params, posts=posts)
 
 
