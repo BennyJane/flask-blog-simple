@@ -2,7 +2,6 @@
 个人博客项目
 
 ### 项目初始化
-1. 数据库迁移文件生成 ?? 未实现
 ```bash
 # 添加flask-migrate扩展后，flask自动添加了一系列 flask db [args]终端命令; 通过 --help 查看
  flask db --help
@@ -20,7 +19,6 @@
 2. 创建数据库，添加账号和基本数据
 ```bash
 flask inidb
-
 flask init --username benny --password blogdog
 ```
 
@@ -32,5 +30,5 @@ flask forge
 
 4.启动项目
 ```bash
-flask run -p 8000
+flask run -p 8000  
 ```

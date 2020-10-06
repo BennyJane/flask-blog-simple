@@ -40,13 +40,9 @@ class BaseConfig(object):
         # 'Minty': 'Minty',   # 太粉嫩
         # 'Journal': 'Journal',  # 颜色不和谐
     }
-    BLOGDOG_CODE_STYLE =['agate', 'dark', 'zenburn']
+    BLOGDOG_CODE_STYLE = ['agate', 'dark', 'zenburn']
 
     # 主题颜色设置
-
-
-class DevelopmentConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
 
     # 邮件配置
     MAIL_SERVER = os.getenv('MAIL_SERVER')
@@ -56,6 +52,10 @@ class DevelopmentConfig(BaseConfig):
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = ('admin', MAIL_USERNAME)
     BLOGDOG_EMAIL = '2314255424@qq.com'
+
+
+class DevelopmentConfig(BaseConfig):
+    SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
 
 
 class TestingConfig(BaseConfig):
