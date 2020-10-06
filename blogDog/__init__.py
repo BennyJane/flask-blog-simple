@@ -61,7 +61,6 @@ def register_extensions(app):
 
 def register_commands(app):
     """添加终端命令"""
-    command(app, db)
     command1(app, db)
     command2(app, db)
     command3(app, db)
