@@ -139,7 +139,11 @@ def new_link():
         name = form.name.data
         url = form.url.data
         message = form.message.data
+<<<<<<< HEAD
         timestamp = parse(orm.timestamp.data)
+=======
+        timestamp = parse(form.timestamp.data)
+>>>>>>> 35383cd965429684817b9de8a84c6165abd99b02
 
         link = Link(name=name, url=url, message=message, timestamp=timestamp)
         db.session.add(link)
