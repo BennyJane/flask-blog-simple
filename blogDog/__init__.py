@@ -11,13 +11,13 @@ import os
 from flask import Flask
 from flask_login import current_user
 
-from blogDog.cli import command, command1, command2, command3
+from blogDog import models
+from blogDog.cli import command1, command2, command3
 from blogDog.common.utils import register_app_filter
 from blogDog.errors import register_errors
 from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf, mail
 from blogDog.log import register_logging
 from blogDog.models import Admin, Post, Category, Comment, Link
-from blogDog import models
 from blogDog.settings import config
 from blogDog.views import indexView
 from blogDog.web.admin import admin_bp
@@ -69,7 +69,7 @@ def register_commands(app):
 
 def register_blueprint(app):
     app.register_blueprint(blog_bp)
-    app.register_blueprint(auth_bp, url_prefix='/auth') # 前有斜杠， 后可无
+    app.register_blueprint(auth_bp, url_prefix='/auth')  # 前有斜杠， 后可无
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(task_bp, url_prefix='/task')
     app.register_blueprint(visual_bp, url_prefix='/visual')
@@ -99,4 +99,3 @@ def register_template_context(app):
             unread_comments = None
         return dict(admin=admin, categories=categories, links=links, recommends=recommends
                     , unread_comments=unread_comments, subjects=subjects)
-
