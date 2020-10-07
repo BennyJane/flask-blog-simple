@@ -50,10 +50,12 @@ def iPagination(params):
 
 
 def getTitleIndex(title):
+    index = 100
     title = title.replace(',', '.').replace('，', '.')
     if '.' in title:
         try:
             index = int(title.split('.'))
-        except Exception as e:
-            index = 100
+        except Exception:
+            # todo 设置全局异常捕获，弹窗提示
+            pass
     return index

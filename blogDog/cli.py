@@ -6,6 +6,7 @@
 # @Project : flask-blog-v1
 import click
 
+from blogDog.fakes import fake_admin
 from blogDog.models import Admin, Category
 
 '''
@@ -101,5 +102,8 @@ def command3(app, db):
 
         click.echo('Generating links...')
         fake_links()
+
+        click.echo("Generating admin: (benny blogdog)")
+        fake_admin()
 
         click.echo('Done.')
