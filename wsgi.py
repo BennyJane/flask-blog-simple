@@ -15,8 +15,8 @@ if os.path.exists(dotenv_path):
 from blogDog import create_app  # noqa
 
 # 这种写法会导致本地生成 produce 的文件
-# app = create_app('production')
-app = create_app()
+app = create_app('production')
+# app = create_app()
 
 
 #SECRET_KEY=DJFWLSFJDLSADFDK134545615466
