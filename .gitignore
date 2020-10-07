@@ -133,3 +133,5 @@ dmypy.json
 .idea/*
 
 .db
+data.db
+data-dev.db

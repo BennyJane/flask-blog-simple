@@ -24,10 +24,7 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('blog.index') }}">Home<span
-                            class="sr-only">(current)</span></a>
-                </li>
+                {{ render_nav_item('blog.index', 'Home') }}
                 {% include '_otherNav.html' %}
                 {% include '_adminNav.html' %}
             </ul>

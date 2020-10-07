@@ -108,7 +108,7 @@ class Post(db.Model):
                 # print(more_start)
                 target.sub_title = _format(markitup(value[:more_start]))
             else:
-                target.sub_title = _format(target.body_html)
+                target.summary = target.body_html
 
     @staticmethod
     def on_change_content(target, value, oldvalue, initiator):

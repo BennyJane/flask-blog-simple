@@ -1,0 +1,22 @@
+server {
+  listen 80 default_server;
+  server_name _;  # _ 通配符，有域名就写域名
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error/log;
+
+  location / {
+        proxy_pass http://127.0.0.1:8000; # 转发地址，即 Gunicorn运行的地址
+        proxy_redirect off;
+
+        proxy_set_header Host   $host;
+        proxy_set_header X-Real-IP   $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-forwarded-Proto   $scheme;
+  }
+
+  location /static {  # 处理静态文件夹中的静态文件
+        alias /home/blog/www/flask-blog-v1/blogDog/staic/;
+        expires 30d;  # 缓存过期时间
+  }
+
+}
