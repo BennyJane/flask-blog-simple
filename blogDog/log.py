@@ -26,6 +26,10 @@ def register_logging(app):
 
     formatter = logging.Formatter('%(asctime)S - %(name)S - %(levelname)S -%(message)S')
 
+    logPath = os.path.join(basedir, 'logs')
+    if not os.path.exists(logPath):
+        os.mkdir(logPath)
+
     file_handler = RotatingFileHandler(os.path.join(basedir, 'logs/blogdog.log'), maxBytes=10 * 1024 * 1204,
                                        backupCount=10)
     file_handler.setFormatter(formatter)

@@ -54,8 +54,8 @@ def getTitleIndex(title):
     title = title.replace(',', '.').replace('，', '.')
     if '.' in title:
         try:
-            index = int(title.split('.'))
-        except Exception:
+            index = int(title.split('.')[0])
+        except Exception as _:
             # todo 设置全局异常捕获，弹窗提示
             pass
     return index
