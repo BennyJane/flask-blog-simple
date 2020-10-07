@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/ 限制了 富文本编辑器内lib文件的上传
 lib64/
 parts/
 sdist/
@@ -128,8 +128,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .log/*
-*log/*
+log/*
 
 .idea/*
 
 .db
+data.db
+data-dev.db

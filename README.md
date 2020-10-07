@@ -32,3 +32,11 @@ flask forge
 ```bash
 flask run -p 8000  
 ```
+
+#### 修改文件追踪内容
+```bash
+git add -f blogDog/static/editormd/scss/lib
+git add -f blogDog/static/editormd/lib
+git add -f blogDog/logs
+
+```
