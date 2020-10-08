@@ -76,7 +76,6 @@ def show_category(category_id):
     if category.isSubject:
         # 专题文航按照名称排序，方便文章序列的良好化
         posts = sorted(posts, key=lambda x: getTitleIndex(x.title))
-
     return render_template('blog/category.html', category=category, page_params=page_params, posts=posts)
 
 

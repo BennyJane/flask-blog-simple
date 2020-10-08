@@ -3,16 +3,63 @@
 {% block title %}Visual{% endblock %}
 
 {% block mainBody %}
-    <div class="container col-md-8">
-        <h5>~敬请期待~</h5>
+    <div class="container col-md-12"
+         style="position: absolute; top: 123px; bottom: 30px; margin-top: 0;padding-top: 0px">
+        <div class="col-md-12">
+            <h5>可视化案例</h5>
+            <hr/>
+        </div>
+        <!-- 左侧导航栏 -->
+        <div class="col-md-3" style="margin-bottom: 60px; overflow: scroll;">
+            <div class="alert alert-success">
+                <strong>Three.js</strong><br>
+                <a href="#" class="alert-link">3D 可视化地球</a>
+            </div>
+            <div class="alert alert-warning">
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
+                message</a>.
+            </div>
+            <div class="alert alert-info">
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
+                message</a>.
+            </div>
+            <div class="alert alert-info">
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
+                message</a>.
+            </div>
+            <div class="alert alert-info">
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
+                message</a>.
+            </div>
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧展示区 -->
+        <div class="col-md-9" style="background-color: black">
+
+        </div>
     </div>
     <!-- 返回顶部 -->
     <div style="position: fixed; right: 30px; bottom: 10vh">
         <span class="float-lg-right"><a href="#top">Back to top</a></span>
     </div>
     <!-- 页脚 -->
-    <div class="container col-md-8">
-        {% include 'task/_footer.html' %}
-    </div>
+    {#    <div class="col-md-12" style="margin-bottom: 30px">#}
+    {#        {% include 'blog/_footer.html' %}#}
+    {#    </div>#}
 {% endblock %}
 
