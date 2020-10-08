@@ -10,7 +10,7 @@ from wtforms import StringField, SubmitField, BooleanField, PasswordField, Selec
 from wtforms.validators import DataRequired, Length, URL, Email
 from datetime import date
 from blogDog import Category
-
+import uuid
 
 class LoginForm(FlaskForm):
     username = StringField('名称', validators=[DataRequired(), Length(1, 20)])

@@ -18,5 +18,4 @@ server {
         alias /home/blog/www/flask-blog-v1/blogDog/staic/;
         expires 30d;  # 缓存过期时间
   }
-
 }
