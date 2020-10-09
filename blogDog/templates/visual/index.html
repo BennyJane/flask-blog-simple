@@ -3,63 +3,98 @@
 {% block title %}Visual{% endblock %}
 
 {% block mainBody %}
-    <div class="container col-md-12"
-         style="position: absolute; top: 123px; bottom: 30px; margin-top: 0;padding-top: 0px">
-        <div class="col-md-12">
-            <h5>可视化案例</h5>
-            <hr/>
-        </div>
+    <div class="col-md-12">
+        <h5>可视化案例</h5>
+        <hr/>
+    </div>
+    <div id='visual-body' class="container col-md-12 row">
         <!-- 左侧导航栏 -->
-        <div class="col-md-3" style="margin-bottom: 60px; overflow: scroll;">
+        <div class="col-md-2 visual-left-part">
             <div class="alert alert-success">
                 <strong>Three.js</strong><br>
                 <a href="#" class="alert-link">3D 可视化地球</a>
             </div>
             <div class="alert alert-warning">
-                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
-                message</a>.
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">3D 疫情可视化</a>
             </div>
             <div class="alert alert-info">
-                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
-                message</a>.
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">区域数据轮播图</a>
+            </div>
+            <div class="alert alert-success">
+                <strong>Three.js</strong><br>
+                <a href="#" class="alert-link">3D 可视化地球</a>
+            </div>
+            <div class="alert alert-warning">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">3D 疫情可视化</a>
             </div>
             <div class="alert alert-info">
-                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
-                message</a>.
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">区域数据轮播图</a>
+            </div>
+            <div class="alert alert-success">
+                <strong>Three.js</strong><br>
+                <a href="#" class="alert-link">3D 可视化地球</a>
+            </div>
+            <div class="alert alert-warning">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">3D 疫情可视化</a>
             </div>
             <div class="alert alert-info">
-                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert
-                message</a>.
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">区域数据轮播图</a>
             </div>
-            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h4 class="card-title">Primary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
+            <div class="alert alert-success">
+                <strong>Three.js</strong><br>
+                <a href="#" class="alert-link">3D 可视化地球</a>
             </div>
-            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h4 class="card-title">Primary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
+            <div class="alert alert-warning">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">3D 疫情可视化</a>
+            </div>
+            <div class="alert alert-info">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">区域数据轮播图</a>
+            </div>
+            <div class="alert alert-success">
+                <strong>Three.js</strong><br>
+                <a href="#" class="alert-link">3D 可视化地球</a>
+            </div>
+            <div class="alert alert-warning">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">3D 疫情可视化</a>
+            </div>
+            <div class="alert alert-info">
+                <strong>Echarts</strong><br>
+                <a href="#" class="alert-link">区域数据轮播图</a>
             </div>
         </div>
         <!-- 右侧展示区 -->
-        <div class="col-md-9" style="background-color: black">
+        <div class="col-md-10  visual-right-part" style="background-color: rgba(240,240,240,0);">
+            <div id='visual-chart' >1566632</div>
 
         </div>
-    </div>
-    <!-- 返回顶部 -->
-    <div style="position: fixed; right: 30px; bottom: 10vh">
-        <span class="float-lg-right"><a href="#top">Back to top</a></span>
     </div>
     <!-- 页脚 -->
     {#    <div class="col-md-12" style="margin-bottom: 30px">#}
     {#        {% include 'blog/_footer.html' %}#}
     {#    </div>#}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript">
+        let screenHeight = window.innerHeight;
+        let screenHeight2 = document.body.scrollHeight;
+        console.log(screenHeight, screenHeight2)
+
+
+        let targetBody = document.getElementById('visual-body')
+        let visualPartHeight = screenHeight - 180;
+        console.log('visualPartHeight', visualPartHeight)
+        targetBody.setAttribute('style', 'max-height: ' + visualPartHeight + 'px;')
+    </script>
 {% endblock %}
 
