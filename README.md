@@ -18,7 +18,7 @@
 
 2. 创建数据库，添加账号和基本数据
 ```bash
-flask inidb
+flask initdb
 flask init --username benny --password blogdog
 ```
 
@@ -39,4 +39,13 @@ git add -f blogDog/static/editormd/scss/lib
 git add -f blogDog/static/editormd/lib
 git add -f blogDog/logs
 
+```
+
+#### docker 远程部署
+```bash
+# 防火墙 开放8001 端口
+sudo ufw allow 8001
+docker build -t 'blogdog' .
+docekr run -it --rm -p 8001:8001 bloldog
+docker run -d --rm -p 8001:8001 --name blog blogdog
 ```
