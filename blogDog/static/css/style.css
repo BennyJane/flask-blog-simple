@@ -73,3 +73,50 @@ footer {
 .bg-fog {
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
 }
+
+/*可视化页面布局效果*/
+#visual-body {
+    position: absolute;
+    top: 180px;
+    bottom: 30px;
+    margin-top: 0;
+    padding-top: 0;
+    max-height: 100%;
+
+}
+
+.visual-left-part {
+    padding-top: 14px;
+    overflow-x: -moz-scrollbars-none;
+    max-height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.visual-right-part {
+    padding: 14px 14px;
+    box-sizing: border-box;
+}
+
+#visual-chart {
+    height: 100%;
+    max-width: 100%;
+    background-color: black
+}
+
+/* */
+
+#task-body {
+    padding: 1rem 1.5rem;
+    display: flex;
+    /*background-color: rgba(0, 0, 0, 0.03);*/
+    flex-direction: column;
+}
+
+.overText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}

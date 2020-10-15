@@ -29,6 +29,7 @@ from blogDog.web.visual import visual_bp
 
 def create_app(config_name=None):
     if config_name is None:
+        # 这里获取的是 flask_config 而不是 flask_env
         config_name = os.getenv("FLASK_CONFIG", 'development')
     app = Flask(__name__)
     app.config.from_object(config[config_name])
