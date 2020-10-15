@@ -45,7 +45,7 @@
                 cmModePath + "go/go",
                 cmModePath + "dart/dart",
                 cmModePath + "coffeescript/coffeescript",
-                cmModePath + "nginx/nginx",
+                cmModePath + "nginx.nginx/nginx.yaml",
                 cmModePath + "python/python",
                 cmModePath + "perl/perl",
                 cmModePath + "lua/lua",
