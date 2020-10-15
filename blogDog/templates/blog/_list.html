@@ -7,11 +7,16 @@
                                                                                style="color: white">{{ post.title }}</h4>
                 </a>
                 <p class="card-text" style="color: #919aa1 !important">
-                    {% if post.body_html %}
-                        {{ post.body_html|striptags|truncate }}
+                    {% if post.sub_title %}
+                        {{ post.sub_title }}
                     {% else %}
-                        {{ post.body|striptags|truncate }}
+                        {% if post.body_html %}
+                            {{ post.body_html|striptags|truncate }}
+                        {% else %}
+                            {{ post.body|striptags|truncate }}
+                        {% endif %}
                     {% endif %}
+
                 </p>
                 <div style="display: flex;justify-content: space-between" class="text-right">
                     <span>

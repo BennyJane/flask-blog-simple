@@ -173,6 +173,6 @@ CodeMirror.defineMode("nginx", function(config) {
   };
 });
 
-CodeMirror.defineMIME("text/nginx", "text/x-nginx-conf");
+CodeMirror.defineMIME("text/nginx.yaml", "text/x-nginx.yaml-conf");
 
 });
