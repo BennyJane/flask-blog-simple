@@ -23,7 +23,6 @@ def show_chart(chart_name):
     requireFiles = chartFile[chart_name]
     return render_template('visual/index.html', requireFiles=requireFiles)
 
-
 @visual_bp.context_processor
 def add_template_processor():
     return dict(chartList=chartList)

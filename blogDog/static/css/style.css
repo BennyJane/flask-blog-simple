@@ -113,3 +113,10 @@ footer {
     /*background-color: rgba(0, 0, 0, 0.03);*/
     flex-direction: column;
 }
+
+.overText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}

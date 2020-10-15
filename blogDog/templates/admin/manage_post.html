@@ -16,13 +16,14 @@
         <tbody class="table-cell">
         {% if posts %}
             {% for post in posts %}
-                <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
+                <tr {% if (loop.index % 2 == 1) %} class="table-active" {% endif %}>
                     <th scope="row">{{ loop.index }}</th>
-                    <td style="max-width: 300px"><a
+                    <td style="max-width: 300px" class="overText" title="{{ post.title }}"><a
                             href="{{ url_for('blog.show_post', post_id=post.id) }}">{{ post.title }}</a></td>
-                    <td>{{ post.category.name }}</td>
+                    <td style="max-width: 150px" class="overText"
+                        title="{{ post.category.name }}">{{ post.category.name }}</td>
                     <td>{{ post.comments|length }}</td>
-                    <td>{{ moment(post.timestamp).format('Y-M-D H:m') }}</td>
+                    <td>{{ moment(post.timestamp).format('Y-M-D') }}</td>
                     <td class="table-deal">
                         <div class="justify-content-between">
                             <a type="button" class="btn btn-primary btn-sm"

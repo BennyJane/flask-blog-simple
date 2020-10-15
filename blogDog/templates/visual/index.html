@@ -35,7 +35,11 @@
         </div>
         <!-- 右侧展示区 -->
         <div class="col-md-10  visual-right-part" style="background-color: rgba(240,240,240,0);">
-            <div id='visual-chart'>1566632</div>
+            <div id='visual-chart'>
+                <iframe style="width:100%;height:100%;" scrolling="no" frameborder="0"
+                        src=""></iframe>
+
+            </div>
 
         </div>
     </div>
@@ -58,13 +62,8 @@
         console.log('visualPartHeight', visualPartHeight)
         targetBody.setAttribute('style', 'max-height: ' + visualPartHeight + 'px;')
     </script>
-    <script src="{{ url_for('static', filename='/earthChartJs/three.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='/earthChartJs/OrbitControls.js') }}"></script>
-    <script src="{{ url_for('static', filename='/earthChartJs/tween.min.js') }}"></script>
-
-    <script type="module" src="{{ url_for('static', filename='/earthChartJs/base.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='/earthChartJs/earthLib.js') }}"></script>
-    <script src="{{ url_for('static', filename='/earthChartJs/lightBar.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='/earthChartJs/earthUpgrade.js') }}"></script>
+    <script src='{{ url_for('static', filename='earthChartJs/three.js') }}'></script>
+    <script src='{{ url_for('static', filename='earthChartJs/TransformControls.js') }}'></script>
+    <script src='{{ url_for('static', filename='earthChartJs/example.js') }}'></script>
 {% endblock %}
 
