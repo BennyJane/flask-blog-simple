@@ -7,6 +7,7 @@
 import os
 import sys
 
+
 # 考虑直接使用app的root_path 路径
 baseDir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -55,11 +56,15 @@ class BaseConfig(object):
 
 
 class DevelopmentConfig(BaseConfig):
+    # 本地开发 还是使用 sqlite3 速度快
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
 
 
 class TestingConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-test.db')
+    if os.environ.get('SQLALCHEMY_DATABASE_URI'):
+        SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+    else:
+        SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data.db')
 
 
 class ProductionConfig(BaseConfig):
