@@ -16,6 +16,8 @@ from flask import request, redirect, url_for
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
+    # netloc 服务器位置
+    # scheme 获取网络协议
     return test_url.scheme in ('http', 'https') and ref_url.netloc == test_url.netloc
 
 
