@@ -25,6 +25,7 @@ from blogDog.web.auth import auth_bp
 from blogDog.web.blog import blog_bp
 from blogDog.web.taskAndlinks import task_bp
 from blogDog.web.visual import visual_bp
+from blogDog.web.qiniuExt import qiniu_bp
 
 
 def create_app(config_name=None):
@@ -73,6 +74,7 @@ def register_blueprint(app):
     app.register_blueprint(admin_bp, url_prefix='/admin')
     app.register_blueprint(task_bp, url_prefix='/task')
     app.register_blueprint(visual_bp, url_prefix='/visual')
+    app.register_blueprint(qiniu_bp, url_prefix='/upload')
 
 
 def register_shell_context(app):

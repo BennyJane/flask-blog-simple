@@ -4,13 +4,18 @@
 # @Email : 暂无
 # @File : utils.py
 # @Project : flask-blog-v1
+import hashlib
+import os
+import random
+import string
+import time
+
+from flask import request, redirect, url_for
+
 try:
     from urlparse import urlparse, urljoin
 except ImportError:
     from urllib.parse import urlparse, urljoin
-import random
-
-from flask import request, redirect, url_for
 
 
 def is_safe_url(target):
@@ -41,3 +46,11 @@ def register_app_filter(app):
         }
         # print(res)
         return res
+
+
+def random_filename(rawFileName):
+    letters = string.ascii_letters
+    salt_string = str(time.time()) + ''.join(random.sample(letters, 5))
+    new_filename = hashlib.md5(salt_string.encode('utf-8')).hexdigest()
+    ext = os.path.splitext(rawFileName)[-1]
+    return new_filename + ext

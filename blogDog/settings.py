@@ -58,6 +58,11 @@ class BaseConfig(object):
 class DevelopmentConfig(BaseConfig):
     # 本地开发 还是使用 sqlite3 速度快
     SQLALCHEMY_DATABASE_URI = prefix + os.path.join(baseDir, 'data-dev.db')
+    # 添加七牛云存储
+    UEDITOR_QINIU_ACCESS_KEY = "NaTF79Ps5Gx4Ee8LcuhViZHMZQL9ow-tNA-5hwAQ"
+    UEDITOR_QINIU_SECRET_KEY = "jjRQRitfFrWoUGfS8rj-sP57mkzhJvshL0rKeMSi"
+    UEDITOR_QINIU_BUCKET_NAME = "myfile02-public"
+    UEDITOR_QINIU_DOMAIN = "http://cdn.img.pygorun.com/"
 
 
 class TestingConfig(BaseConfig):

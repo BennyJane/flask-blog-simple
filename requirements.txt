@@ -1,3 +1,4 @@
+qiniu
 alembic==1.4.2
 bleach==3.0.1
 blinker==1.4
