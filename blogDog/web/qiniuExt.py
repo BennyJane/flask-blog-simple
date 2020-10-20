@@ -29,7 +29,7 @@ def upload():
     save_filename = random_filename(filename)
     result = {
         'success': 0,
-        'message': '文件上传成功',
+        'message': '',
         'url': ''
     }
     q = qiniu.Auth(UEDITOR_QINIU_ACCESS_KEY, UEDITOR_QINIU_SECRET_KEY)
@@ -42,6 +42,6 @@ def upload():
         result['url'] = parse.urljoin(UEDITOR_QINIU_DOMAIN, ret['key'])
     else:
         result['success'] = 1
-        result['message'] = '图片上传失败'
+        result['message'] = ''
     print(result)
     return jsonify(result)
