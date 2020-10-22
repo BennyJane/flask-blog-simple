@@ -117,7 +117,7 @@ gulp.task("amd", function() {
         '                cmModePath + "go/go",', 
         '                cmModePath + "dart/dart",', 
         '                cmModePath + "coffeescript/coffeescript",',
-        '                cmModePath + "nginx.yaml/nginx.yaml",',
+        '                cmModePath + "nginx/nginx",',
         '                cmModePath + "python/python",', 
         '                cmModePath + "perl/perl",',
         '                cmModePath + "lua/lua",', 

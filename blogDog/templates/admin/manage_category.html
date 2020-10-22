@@ -18,7 +18,7 @@
             {% for category in categories %}
                 <tr {% if (loop.index % 2 == 1) %}class="table-active" {% endif %}>
                     <th scope="row">{{ loop.index }}</th>
-                    <td>{{ category.name }}</td>
+                    <td class="overText">{{ category.name }}</td>
                     <td>{{ category.posts|length }}</td>
                     <td>{{ category.isSubject }}</td>
                     <td>{{ category.subject_info }}</td>
