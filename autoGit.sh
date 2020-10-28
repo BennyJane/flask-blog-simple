@@ -62,6 +62,7 @@ then
     echo "使用默认注释，进行更新"
     if test "$(git commit -m 更新)"
     then
+       git status
        echo "[commit success!]"
     else
        echo "[commit fail!]"
@@ -70,6 +71,7 @@ elif [[ -n ${message} ]]
 then
     if test "$(git commit -m ${message})"
     then
+       git status
        echo "[commit success!]"
     else
        echo "[commit fail!]"
