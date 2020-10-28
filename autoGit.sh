@@ -41,9 +41,18 @@ fi
 #  exit 1;;
 #esac
 
+function gitCommit () {
+    if test "$(git commit -m $1)"
+    then
+       git status
+       echo "[commit success!]"
+    else
+       echo "[commit fail!]"
+    fi
+}
+
+
 echo '------------------------------------------------------------------------------------'
-
-
 
 git add .
 git status
@@ -60,22 +69,11 @@ then
 elif [[ ${message} = "d" ]]
 then
     echo "使用默认注释，进行更新"
-    if test "$(git commit -m 更新)"
-    then
-       git status
-       echo "[commit success!]"
-    else
-       echo "[commit fail!]"
-    fi
+    message="更新"
+    gitCommit ${message}
 elif [[ -n ${message} ]]
 then
-    if test "$(git commit -m ${message})"
-    then
-       git status
-       echo "[commit success!]"
-    else
-       echo "[commit fail!]"
-    fi
+    gitCommit ${message}
 else
     echo "请输入本次更新信息"
 fi
