@@ -17,6 +17,7 @@ from blogDog.common.utils import register_app_filter
 from blogDog.errors import register_errors
 from blogDog.extensions import db, migrate, moment, bootstrap, login_manager, ckeditor, csrf, mail
 from blogDog.log import register_logging
+# 需要将所有表导入到 migrate绑定app的模块中,才能保证被检测到
 from blogDog.models import Admin, Post, Category, Comment, Link
 from blogDog.settings import config
 from blogDog.views import indexView
