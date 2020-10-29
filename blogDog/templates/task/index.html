@@ -8,7 +8,7 @@
             {% for link in links %}
                 {% if link.timestamp %}
                     <div class="float-left row" style="width: 100%">
-                        <div class="card text-white bg-dark mb-3" style="padding: 0.5rem">
+                        <div class="card text-white bg-dark mb-3" style="padding: 0.5rem; min-width: 158px">
                             <p class="align-items-md-center"
                                style="padding: 0; margin: 0">{{ moment(link.timestamp).format('Y-M-D') }}</p>
                         </div>
