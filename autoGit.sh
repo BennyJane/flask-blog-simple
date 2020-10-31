@@ -2,4 +2,4 @@
 #set -ex
 set -e
 push_branch=master
-source '/home/benny/PycharmProjects/gitHelper.sh' ${push_branch}
+source 'F:\BennyOfProjects\shell-projects\gitHelper.sh' ${push_branch}
