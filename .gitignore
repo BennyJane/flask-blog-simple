@@ -135,3 +135,5 @@ log/*
 .db
 data.db
 data-dev.db
+
+autoGit.sh
